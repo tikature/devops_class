@@ -1,0 +1,23 @@
+name: Example CI/CD Pipeline
+
+# Trigger the workflow on push to main or develop branches
+on:
+  push:
+    branches: [main, develop]
+
+# Pekerjaan yang akan dijalankan pada setiap push ke cabang main atau develop
+jobs:
+  ci-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
