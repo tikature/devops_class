@@ -56,7 +56,7 @@ jobs:
             echo "Berhasil masuk ke server"
             ls
 
-            if { -d ".git" }; then
+            if [] -d ".git" ]; then
               echo "Repository sudah ada, melakukan git pull"
               git pull origin main
             else
