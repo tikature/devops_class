@@ -49,6 +49,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ..
+            sudo su
+            cd ..
             ls
         
       # -   name: Set up Node.js
