@@ -53,6 +53,7 @@ jobs:
             cd ..
             ls
             cd home/app_project
+            echo "Berhasil masuk ke server"
         
       # -   name: Set up Node.js
       #   uses: actions/setup-node@v3
