@@ -54,6 +54,13 @@ jobs:
             ls
             cd home/app_project
             echo "Berhasil masuk ke server"
+
+            if { -d ".git" }; then
+              echo "Repository sudah ada, melakukan git pull"
+              git pull origin main
+            else
+              echo "Repository belum ada, melakukan git clone"
+            fi
         
       # -   name: Set up Node.js
       #   uses: actions/setup-node@v3
