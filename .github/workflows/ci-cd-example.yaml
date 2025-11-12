@@ -66,11 +66,37 @@ jobs:
               echo "Berhasil clone"
             fi
         
-      # -   name: Set up Node.js
-      #   uses: actions/setup-node@v3
+  sonarcloud:
+    name: Analyze with SonarCloud
+    runs-on: ubuntu-latest
 
-      # - name: Install dependencies
-      #   run: npm install
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      # - name: Run tests
-      #   run: npm test
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests and collect coverage
+        run: npx jest --coverage --coverageReporters=lcov
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.organization=tikature
+            -Dsonar.projectKey=tikature_devops_class
+            -Dsonar.sources=./src
+            -Dsonar.tests=./tests
+            -Dsonar.test.inclusions=**/*.test.js
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=tests/**
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
