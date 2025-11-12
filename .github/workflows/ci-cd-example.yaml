@@ -59,8 +59,11 @@ jobs:
             if [] -d ".git" ]; then
               echo "Repository sudah ada, melakukan git pull"
               git pull origin main
+              echo "Berhasil pull"
             else
               echo "Repository belum ada, melakukan git clone"
+              git clone https://github.com/tikature/devops_class.git .
+              echo "Berhasil clone"
             fi
         
       # -   name: Set up Node.js
