@@ -52,6 +52,7 @@ jobs:
             sudo su
             cd ..
             ls
+            cd home/app_project
         
       # -   name: Set up Node.js
       #   uses: actions/setup-node@v3
